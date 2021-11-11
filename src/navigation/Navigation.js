@@ -37,7 +37,7 @@ export default function Naver() {
   );
 }
 
-export function MyTabs() {
+function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Home"

@@ -131,7 +131,7 @@ export default function HomeScreen({ navigation }) {
                 fuel={item.fuel}
                 price={item.price}
                 image={item.image}
-                onPress={console.log("")}
+                onPress={() => navigation.navigate("DetailScreen")}
               />
             </View>
           )}
