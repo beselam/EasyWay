@@ -85,20 +85,6 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View>
-      <TouchableOpacity onPress={() => handleLogoutClick()}>
-        <Text
-          style={{
-            padding: 2,
-            backgroundColor: "yellow",
-            margin: 5,
-            fontSize: 15,
-            alignSelf: "center",
-          }}
-        >
-          Logout
-        </Text>
-      </TouchableOpacity>
-
       <Card style={styles.textInputCard}>
         <View style={styles.textInputInner}>
           <View style={styles.iconContainer}>
@@ -164,6 +150,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: "90%",
     alignSelf: "center",
+    marginVertical: 20,
   },
   textInputInner: { flexDirection: "row", width: "100%" },
   ll: {
