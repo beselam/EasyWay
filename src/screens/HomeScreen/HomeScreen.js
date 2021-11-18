@@ -117,22 +117,9 @@ export default function HomeScreen({ navigation }) {
                 fuel={item.fuel}
                 price={item.price}
                 image={item.image}
-                onPress={() => navigation.navigate("DetailScreen", {
-                  carModel: item.model,
-                  carBrand: item.brand,
-                  carPrice: item.price,
-                  carFuel: item.fuel,
-                  carYear: item.modelYear,
-                  carType: item.type,
-                  carPower: item.housePower,
-                  carSpeed: item.maxSpeed,
-                  carTransmission: item.transmission,
-                  carColor: item.color,
-                  carConsumption: item.fuelConsumption,
-                  carCO2: item.CO2,
-                  carLocation: item.location,
-                  carImage: item.image
-                })}
+                onPress={() =>
+                  navigation.navigate("DetailScreen", { id: item.id })
+                }
               />
             </View>
           )}
