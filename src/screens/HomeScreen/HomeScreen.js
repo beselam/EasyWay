@@ -71,7 +71,6 @@ export default function HomeScreen({ navigation }) {
     let newList = [];
     const querySnapshot = await getDocs(collection(db, "cars"));
     querySnapshot.forEach((doc) => {
-      console.log(` ${doc.data().model}`);
       newList.push(doc.data());
     });
     await setCars(newList);
@@ -117,7 +116,9 @@ export default function HomeScreen({ navigation }) {
                 fuel={item.fuel}
                 price={item.price}
                 image={item.image}
-                onPress={() => navigation.navigate("DetailScreen")}
+                onPress={() =>
+                  navigation.navigate("DetailScreen", { id: item.id })
+                }
               />
             </View>
           )}
