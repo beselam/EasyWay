@@ -131,7 +131,7 @@ export default function HomeScreen({ navigation }) {
                   carConsumption: item.fuelConsumption,
                   carCO2: item.CO2,
                   carLocation: item.location,
-                 // carImage: item.image
+                  carImage: item.image
                 })}
               />
             </View>
