@@ -6,6 +6,7 @@ import {
   Dimensions,
   Image,
   ScrollView,
+  Button,
 } from "react-native";
 import { collection, addDoc, getDocs, where } from "firebase/firestore";
 import { db } from "../firebase/config";
@@ -17,6 +18,7 @@ const windowHeight = Dimensions.get("window").height;
 function DetailScreen({ route, navigation }) {
   const [car, setCar] = useState({});
   const { id } = route.params;
+  const [shouldShow, setShouldShow] = useState(false);
 
   const handler = async (id) => {
     let newList = [];
@@ -38,6 +40,7 @@ function DetailScreen({ route, navigation }) {
     handler(id);
   }, []);
 
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.items}>
@@ -45,15 +48,55 @@ function DetailScreen({ route, navigation }) {
           <View>
             <Image style={styles.imageStyle} source={{ uri: car.image }} />
             <View style={styles.info}>
-              <Text>model</Text>
-              <Text>{car.model}</Text>
+              <Text>Brand: </Text>
+              <Text>{car.brand}</Text>
             </View>
             <View style={styles.info}>
-              <Text>{car.type}</Text>
+              <Text>Price: </Text>
+              <Text>{car.price}</Text>
             </View>
             <View style={styles.info}>
-              <Text>{car.transmission}</Text>
-            </View>
+              <Text>Location: </Text>
+              <Text>{car.location}</Text>
+            </View>          
+            {shouldShow ? (
+              <><View style={styles.info}>
+                <Text>Model: </Text>
+                <Text>{car.model}</Text>
+              </View><View style={styles.info}>
+                  <Text>Year: </Text>
+                  <Text>{car.modelYear}</Text>
+                </View><View style={styles.info}>
+                  <Text>Type:</Text>
+                  <Text>{car.type}</Text>
+                </View><View style={styles.info}>
+                  <Text>Transmisison: </Text>
+                  <Text>{car.transmission}</Text>
+                </View><View style={styles.info}>
+                  <Text>Max speed: </Text>
+                  <Text>{car.maxSpeed}</Text>
+                </View><View style={styles.info}>
+                  <Text>Horsepower: </Text>
+                  <Text>{car.housePower}</Text>
+                </View><View style={styles.info}>
+                  <Text>Fuel: </Text>
+                  <Text>{car.fuel}</Text>
+                </View><View style={styles.info}>
+                  <Text>Consumption: </Text>
+                  <Text>{car.fuelConsumption}</Text>
+                </View><View style={styles.info}>
+                  <Text>CO2 emissions: </Text>
+                  <Text>{car.CO2}</Text>
+                </View><View style={styles.info}>
+                  <Text>Color: </Text>
+                  <Text>{car.color}</Text>
+                </View></>
+            )
+         : null} 
+         <Button title="More Info"
+             onPress={() => setShouldShow(!shouldShow)}
+            />
+          <Button color="orange" title="Order button"/>
           </View>
         ) : (
           <View></View>
