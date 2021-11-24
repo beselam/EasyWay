@@ -2,6 +2,7 @@ import "react-native-gesture-handler";
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 import { LoginScreen, HomeScreen, RegistrationScreen } from "./src/screens";
 import { decode, encode } from "base-64";
@@ -13,6 +14,7 @@ import ProfileSCreen from "./src/screens/ProfileSCreen";
 import DetailScreen from "./src/screens/DetailScreen";
 import { getAuth } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
+import OrderScreen from "./src/screens/OrderScreen";
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -47,6 +49,7 @@ export default function App() {
       <Stackk.Navigator initialRouteName="HomeScreen">
         <Stackk.Screen name="HomeScreen" component={HomeScreen} />
         <Stackk.Screen name="DetailScreen" component={DetailScreen} />
+        <Stackk.Screen name="OrderScreen" component={OrderScreen} />
       </Stackk.Navigator>
     );
   };
@@ -72,12 +75,12 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Favorite"
+          name="Subscription"
           component={FavoriteScreen}
           options={{
-            tabBarLabel: "Favorite",
+            tabBarLabel: "Subscription",
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="star" color={color} size={26} />
+              <FontAwesome5 name="opencart" size={24} color={color} />
             ),
           }}
         />
