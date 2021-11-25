@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, Text, TextInput, TouchableOpacity, View, ImageBackground } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./styles";
 import {
@@ -47,6 +47,7 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <ImageBackground source={require("../../../assets/backgroundImage.jpg")} style={{width: "100%", height: "100%"}}>
       <KeyboardAwareScrollView
         style={{ flex: 1, width: "100%" }}
         keyboardShouldPersistTaps="always"
@@ -86,6 +87,7 @@ export default function LoginScreen({ navigation }) {
           </Text>
         </View>
       </KeyboardAwareScrollView>
+      </ImageBackground>
     </View>
   );
 }

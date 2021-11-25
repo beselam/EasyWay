@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { FontAwesome5 } from "@expo/vector-icons";
-
+import { Image } from "react-native"
 import { LoginScreen, HomeScreen, RegistrationScreen } from "./src/screens";
 import { decode, encode } from "base-64";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
@@ -35,10 +35,13 @@ export default function App() {
   const AuthScreen = () => {
     return (
       <Stack.Navigator initialRouteName="LoginScreen">
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen}
+        options={{title: "Login", headerShown: false}}
+        />
         <Stack.Screen
           name="RegistrationScreen"
           component={RegistrationScreen}
+          options={{title: "Registration"}}
         />
       </Stack.Navigator>
     );
@@ -47,9 +50,28 @@ export default function App() {
   const FeedScreen = () => {
     return (
       <Stackk.Navigator initialRouteName="HomeScreen">
-        <Stackk.Screen name="HomeScreen" component={HomeScreen} />
-        <Stackk.Screen name="DetailScreen" component={DetailScreen} />
-        <Stackk.Screen name="OrderScreen" component={OrderScreen} />
+        <Stackk.Screen name="HomeScreen" component={HomeScreen} 
+        options={{
+          headerTitle: () => (
+            <Image style={{width: 100, height: 50}} source={require("./assets/VehoLogoBlack.png")} />
+          ),
+          title: "Home"
+        }} 
+        />
+        <Stackk.Screen name="DetailScreen" component={DetailScreen} 
+        options={{
+          headerTitle: () => (
+            <Image style={{width: 100, height: 50}} source={require("./assets/VehoLogoBlack.png")} />
+          ),
+          title: "Car"
+        }}/>
+        <Stackk.Screen name="OrderScreen" component={OrderScreen}
+        options={{
+          headerTitle: () => (
+            <Image style={{width: 100, height: 50}} source={require("./assets/VehoLogoBlack.png")} />
+          ),
+        }}
+        />
       </Stackk.Navigator>
     );
   };

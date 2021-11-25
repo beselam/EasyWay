@@ -13,7 +13,8 @@ export default StyleSheet.create({
         height: 120,
         width: 250,
         alignSelf: "center",
-        margin: 30
+        margin: 30,
+        marginTop: 150
     },
     input: {
         height: 48,
@@ -27,7 +28,7 @@ export default StyleSheet.create({
         paddingLeft: 16
     },
     button: {
-        backgroundColor: '#788eec',
+        backgroundColor: '#4fd966',
         marginLeft: 30,
         marginRight: 30,
         marginTop: 20,
@@ -44,14 +45,16 @@ export default StyleSheet.create({
     footerView: {
         flex: 1,
         alignItems: "center",
-        marginTop: 20
+        marginTop: 20,
     },
     footerText: {
-        fontSize: 16,
-        color: '#2e2e2d'
+        fontSize: 18,
+        color: 'white',
+        backgroundColor: "rgba(52, 52, 52, 0.3)",
+        
     },
     footerLink: {
-        color: "#788eec",
+        color: "#00adef",
         fontWeight: "bold",
         fontSize: 16
     }

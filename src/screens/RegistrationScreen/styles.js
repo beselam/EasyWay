@@ -11,7 +11,7 @@ export default StyleSheet.create({
     logo: {
         flex: 1,
         height: 120,
-        width: 90,
+        width: 250,
         alignSelf: "center",
         margin: 30
     },
@@ -27,7 +27,7 @@ export default StyleSheet.create({
         paddingLeft: 16
     },
     button: {
-        backgroundColor: '#788eec',
+        backgroundColor: '#4fd966',
         marginLeft: 30,
         marginRight: 30,
         marginTop: 20,

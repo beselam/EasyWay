@@ -122,7 +122,7 @@ function DetailScreen({ route, navigation }) {
                 marginVertical: 10,
                 padding: 20,
                 borderRadius: 4,
-                backgroundColor: "#fc5c65",
+                backgroundColor: "#4fd966",
                 height: 60,
               }}
             >
