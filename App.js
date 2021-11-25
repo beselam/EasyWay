@@ -9,13 +9,12 @@ import { decode, encode } from "base-64";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import FavoriteScreen from "./src/screens/FavoriteScreen";
+import SubscriptionScreen from "./src/screens/SubscriptionScreen";
 import ProfileSCreen from "./src/screens/ProfileSCreen";
 import DetailScreen from "./src/screens/DetailScreen";
 import { getAuth } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import OrderScreen from "./src/screens/OrderScreen";
-import { Dada } from "./src/screens/Dada";
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -77,7 +76,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Subscription"
-          component={FavoriteScreen}
+          component={SubscriptionScreen}
           options={{
             tabBarLabel: "Subscription",
             tabBarIcon: ({ color }) => (
@@ -87,7 +86,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Profile"
-          component={Dada}
+          component={ProfileSCreen}
           options={{
             tabBarLabel: "Profile",
             tabBarIcon: ({ color }) => (

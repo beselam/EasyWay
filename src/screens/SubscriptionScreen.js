@@ -8,7 +8,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox";
 
-function FavoriteScreen(props) {
+function SubscriptionScreen(props) {
   const [cars, setCars] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
@@ -27,7 +27,7 @@ function FavoriteScreen(props) {
       where("user", "==", user.uid)
     );
     querySnapshot.forEach((doc) => {
-      if (doc.data().active == true) {
+      if (doc.data().active == true && doc.data().user == user.uid) {
         newList.push(doc.data());
       }
     });
@@ -235,4 +235,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FavoriteScreen;
+export default SubscriptionScreen;

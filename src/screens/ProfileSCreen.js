@@ -60,7 +60,6 @@ function ProfileSCreen({ navigation }) {
     <View style={styles.container1}>
       <View style={styles.container2}>
         <ListItem
-          onPress={() => console.log("s")}
           title={"      " + fullName}
           subTitle={"      " + email}
           chevron={false}
@@ -81,9 +80,19 @@ function ProfileSCreen({ navigation }) {
                 />
               }
               onPress={() => {
-                Alert.alert("work on progress", "will be functional soon", {
-                  cancelable: true,
-                });
+                Alert.alert(
+                  "work on progress",
+                  "will be functional soon",
+                  [
+                    {
+                      text: "Ok",
+                      onPress: () => console.log("s"),
+                    },
+                  ],
+                  {
+                    cancelable: true,
+                  }
+                );
               }}
             />
           )}
