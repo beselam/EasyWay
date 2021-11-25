@@ -15,6 +15,7 @@ import DetailScreen from "./src/screens/DetailScreen";
 import { getAuth } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import OrderScreen from "./src/screens/OrderScreen";
+import { Dada } from "./src/screens/Dada";
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -86,7 +87,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Profile"
-          component={ProfileSCreen}
+          component={Dada}
           options={{
             tabBarLabel: "Profile",
             tabBarIcon: ({ color }) => (

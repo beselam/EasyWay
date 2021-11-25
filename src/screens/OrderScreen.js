@@ -41,7 +41,8 @@ function OrderScreen({ route, navigation }) {
   const [bikeRackChecked, setBikeRack] = useState(false);
   const [successVisible, setSuccessVisible] = useState(false);
   const [navigator, setNavigator] = useState(false);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
+  const [showEndDate, setShowEndDate] = useState(false);
   const auth = getAuth();
   const { id, image, price, model } = route.params;
 
@@ -53,6 +54,20 @@ function OrderScreen({ route, navigation }) {
     setDate(currentDate);
   };
 
+  const onEndDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowEndDate(Platform.OS === "ios");
+    setEndDate(currentDate);
+    const subDateDif = currentDate - date;
+    const subDate = subDateDif / oneDay;
+    const subPrice = subDate * price;
+    const finalPrice = subPrice.toFixed(0);
+    if (finalPrice == 0) {
+      setTotalPrice(price);
+    } else {
+      setTotalPrice(finalPrice);
+    }
+  };
   const setChildSeatChecked = (value) => {
     if (childSeatChecked == true) {
       setChildSeat(false);
@@ -73,21 +88,6 @@ function OrderScreen({ route, navigation }) {
       setBikeRack(true);
       let price = parseInt(totalPrice) + 20;
       setTotalPrice(price);
-    }
-  };
-
-  const onEndDateChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === "ios");
-    setEndDate(currentDate);
-    const subDateDif = currentDate - date;
-    const subDate = subDateDif / oneDay;
-    const subPrice = subDate * price;
-    const finalPrice = subPrice.toFixed(0);
-    if (finalPrice == 0) {
-      setTotalPrice(price);
-    } else {
-      setTotalPrice(finalPrice);
     }
   };
 
@@ -114,6 +114,13 @@ function OrderScreen({ route, navigation }) {
     }
   };
 
+  const showStDate = () => {
+    setShow(true);
+  };
+
+  const showEndDateC = () => {
+    setShowEndDate(true);
+  };
   useEffect(() => {
     setNavigator(false);
     if (price != undefined && id != undefined && image != undefined) {
@@ -182,7 +189,7 @@ function OrderScreen({ route, navigation }) {
           </View>
         </View>
       </Card>
-      <Card style={{ marginVertical: 10 }}>
+      <Card style={{ marginVertical: 10 }} onPress={showStDate}>
         <View style={styles.stDate}>
           <Text
             style={{
@@ -195,19 +202,26 @@ function OrderScreen({ route, navigation }) {
             Subscription Start
           </Text>
           <View style={{ flex: 1 }}>
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode="date"
-              is24Hour={true}
-              display="default"
-              minimumDate={date}
-              onChange={onChange}
-            />
+            {(show || Platform.OS === "ios") && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode="date"
+                is24Hour={true}
+                display="default"
+                minimumDate={date}
+                onChange={onChange}
+              />
+            )}
           </View>
+          {Platform.OS !== "ios" && (
+            <View style={{ flex: 1 }}>
+              <Text>{date.toDateString()}</Text>
+            </View>
+          )}
         </View>
       </Card>
-      <Card style={{ marginBottom: 10 }}>
+      <Card style={{ marginBottom: 10 }} onPress={showEndDateC}>
         <View style={styles.etDate}>
           <Text
             style={{
@@ -220,16 +234,23 @@ function OrderScreen({ route, navigation }) {
             Subscription End
           </Text>
           <View style={{ flex: 1 }}>
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={endDate}
-              mode="date"
-              is24Hour={true}
-              display="default"
-              minimumDate={date}
-              onChange={onEndDateChange}
-            />
+            {(showEndDate || Platform.OS === "ios") && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={endDate}
+                mode="date"
+                is24Hour={true}
+                display="default"
+                minimumDate={date}
+                onChange={onEndDateChange}
+              />
+            )}
           </View>
+          {Platform.OS !== "ios" && (
+            <View style={{ flex: 1 }}>
+              <Text>{endDate.toDateString()}</Text>
+            </View>
+          )}
         </View>
       </Card>
       <Card style={{ padding: 20 }}>
@@ -302,7 +323,6 @@ function OrderScreen({ route, navigation }) {
         </View>
       </Card>
       <Card
-        onPress={{}}
         style={{
           marginVertical: 10,
           padding: 20,

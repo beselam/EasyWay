@@ -108,6 +108,7 @@ function DetailScreen({ route, navigation }) {
               title="More Info"
               onPress={() => setShouldShow(!shouldShow)}
             />
+
             <Card
               onPress={() =>
                 navigation.navigate("OrderScreen", {
