@@ -98,14 +98,14 @@ export default function RegistrationScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={require("../../../assets/backgroundImage.jpg")} style={{width: "100%", height: "100%"}}>
+      <ImageBackground source={require("../../../assets/vehoWallpaper2.jpg")} style={{width: "100%", height: "100%"}}>
       <KeyboardAwareScrollView
         style={{ flex: 1, width: "100%" }}
         keyboardShouldPersistTaps="always"
       >
         <Image
           style={styles.logo}
-          source={require("../../../assets/VehoLogoBlack.png")}
+          source={require("../../../assets/VehoLogoWhite.png")}
         />
         <TextInput
           style={styles.input}

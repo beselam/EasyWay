@@ -20,7 +20,7 @@ export default StyleSheet.create({
         height: 48,
         borderRadius: 5,
         overflow: 'hidden',
-        backgroundColor: 'white',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         marginTop: 10,
         marginBottom: 10,
         marginLeft: 30,

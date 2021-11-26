@@ -107,6 +107,7 @@ export default function HomeScreen({ navigation }) {
 
       {cars?.length > 0 ? (
         <FlatList
+        style={{marginBottom: 100}}
           data={cars}
           showsVerticalScrollIndicator={false}
           keyExtractor={(list) => list.image + list.color + Math.random()}
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: "90%",
     alignSelf: "center",
-    marginTop: 10,
+    marginTop: 10
   },
   textInputCard: {
     elevation: 2,
