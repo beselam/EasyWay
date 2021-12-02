@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { collection, addDoc, getDocs, where } from "firebase/firestore";
 import { db } from "../firebase/config";
-import ImageList from "../components/ImageList";
 import { Card } from "react-native-paper";
 
 const windowWidth = Dimensions.get("window").width;

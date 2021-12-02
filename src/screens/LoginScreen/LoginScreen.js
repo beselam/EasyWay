@@ -5,18 +5,13 @@ import styles from "./styles";
 import {
   getAuth,
   signInWithEmailAndPassword,
-  signOut,
   onAuthStateChanged,
 } from "firebase/auth";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("d@d.com");
   const [password, setPassword] = useState("");
-  //const [user, setUser] = useState({"name":"matti"})
   const auth = getAuth();
-  /* signOut(auth).then(() => {
-    console.log(" user is logged out");
-  }); */
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -36,7 +31,6 @@ export default function LoginScreen({ navigation }) {
       .then((response) => {
         // console.log(" user is logged in ", response);
         console.log(" user is logged in ");
-        // navigation.replace("HomeScreen");
       })
       .catch((error) => {
         console.log(" user is logged in ", error);

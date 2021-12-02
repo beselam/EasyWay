@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View, ImageBackground } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./styles";
-import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -23,16 +23,12 @@ export default function RegistrationScreen({ navigation }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // navigation.replace("HomeScreen");
       }
     });
     return unsubscribe;
   }, []);
 
   const onFooterLinkPress = async () => {
-    /*     const q = await query(citiesRef, where("email", "==", "ok@gmail.com"));
-    const querySnapshot = await getDocs(q);
-    console.log("Document written with ID: ", querySnapshot); */
 
     const querySnapshot = await getDocs(collection(db, "users"));
     await querySnapshot.forEach((doc) => {
@@ -68,28 +64,6 @@ export default function RegistrationScreen({ navigation }) {
 
         console.log("love is great", data);
         storeUser(data);
-        /*   addDoc(collection(db, "users"), data)
-          .then(() => {
-            console.log(data);
-            navigation.replace("HomeScreen");
-          })
-          .catch((error) => {
-            console.log(error);
-            alert(error);
-          });
-
-       
-                const usersRef = firebase.firestore().collection('users')
-                usersRef
-                    .doc(uid)
-                    .set(data)
-                    .then(() => {
-                        navigation.navigate('Home', {user: data})
-                    })
-                    .catch((error) => {
-                        alert(error)
-                    });
-                    */
       })
       .catch((error) => {
         alert(error);

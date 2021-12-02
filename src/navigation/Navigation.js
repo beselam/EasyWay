@@ -1,4 +1,3 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HomeScreen } from "../screens";
 import FavoriteScreen from "../screens/FavoriteScreen";
 import { NavigationContainer } from "@react-navigation/native";

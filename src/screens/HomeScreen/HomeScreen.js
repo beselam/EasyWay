@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Button,
   Text,
   TouchableOpacity,
   View,
@@ -9,13 +8,11 @@ import {
   TextInput,
 } from "react-native";
 import { Card } from "react-native-paper";
-import { firebase } from "../../firebase/config";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { db } from "../../firebase/config";
 import { collection, addDoc, getDocs } from "firebase/firestore";
-import ListItem from "./../../components/ListItem";
 import ImageList from "../../components/ImageList";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -26,7 +23,6 @@ export default function HomeScreen({ navigation }) {
   console.log(user);
 
   const handleClick = async () => {
-    //  navigation.navigate("DetailScreen");
     const car = {
       available: true,
       brand: "Mercedes-Benz",
@@ -107,7 +103,7 @@ export default function HomeScreen({ navigation }) {
 
       {cars?.length > 0 ? (
         <FlatList
-        style={{marginBottom: 100}}
+        style={{marginBottom: 80}}
           data={cars}
           showsVerticalScrollIndicator={false}
           keyExtractor={(list) => list.image + list.color + Math.random()}
@@ -144,7 +140,7 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   imageContainer: {
-    width: "90%",
+    width: "95%",
     alignSelf: "center",
     marginTop: 10
   },
@@ -153,7 +149,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: "90%",
     alignSelf: "center",
-    marginVertical: 20,
+    marginVertical: 10,
   },
   textInputInner: { flexDirection: "row", width: "100%" },
   ll: {
