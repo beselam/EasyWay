@@ -20,6 +20,18 @@ function DetailScreen({ route, navigation }) {
   const [car, setCar] = useState({});
   const { id } = route.params;
   const [shouldShow, setShouldShow] = useState(false);
+  const [morePressed, setMoreInfo] = useState(false);
+  const [moreInfo, setMoreInfoText] = useState("More info");
+
+  const moreInfoHandle = () => {
+    if (shouldShow == false) {
+      setShouldShow(true);
+      setMoreInfoText("Show Less");
+    } else {
+      setShouldShow(false);
+      setMoreInfoText("More info");
+    }
+  };
 
   const handler = async (id) => {
     let newList = [];
@@ -157,10 +169,7 @@ function DetailScreen({ route, navigation }) {
                 </Animatable.View>
               </>
             ) : null}
-            <Button
-              title="More Info"
-              onPress={() => setShouldShow(!shouldShow)}
-            />
+            <Button title={moreInfo} onPress={() => moreInfoHandle()} />
 
             <Card
               onPress={() =>
