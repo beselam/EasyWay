@@ -12,6 +12,8 @@ import {
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Checkbox from "expo-checkbox";
 import { Card, Title } from "react-native-paper";
+import * as Animatable from "react-native-animatable";
+
 import {
   collection,
   query,
@@ -149,254 +151,264 @@ function OrderScreen({ route, navigation }) {
           visible={successVisible}
         />
       </View>
-
-      <Card style={{ marginVertical: 10 }}>
-        <View style={styles.stCar}>
-          <View style={{ borderRadius: 20 }}>
-            {carImage ? (
-              <Image
+      <Animatable.View animation="bounceIn" duration={1000}>
+        <Card style={{ marginVertical: 10 }}>
+          <View style={styles.stCar}>
+            <View style={{ borderRadius: 20 }}>
+              {carImage ? (
+                <Image
+                  style={{
+                    width: 100,
+                    height: 100,
+                    resizeMode: "contain",
+                  }}
+                  source={{ uri: carImage }}
+                />
+              ) : (
+                <View></View>
+              )}
+            </View>
+            <View
+              style={{
+                flexDirection: "column",
+                paddingHorizontal: 20,
+                justifyContent: "center",
+              }}
+            >
+              <Text
                 style={{
-                  width: 100,
-                  height: 100,
-                  resizeMode: "contain",
+                  fontSize: 14,
+                  width: "70%",
+                  fontWeight: "500",
                 }}
-                source={{ uri: carImage }}
-              />
-            ) : (
-              <View></View>
+                numberOfLines={2}
+              >
+                {model}
+              </Text>
+              <View style={{ paddingVertical: 10 }}>
+                <Text style={{ color: "gray" }}>{price * 30} / Month </Text>
+              </View>
+            </View>
+          </View>
+        </Card>
+      </Animatable.View>
+      <Animatable.View animation="bounceIn" duration={1000}>
+        <Card style={{ marginVertical: 10 }} onPress={showStDate}>
+          <View style={styles.stDate}>
+            <Text
+              style={{
+                flex: 1,
+                alignSelf: "center",
+                fontWeight: "600",
+                fontSize: 16,
+              }}
+            >
+              Subscription Start
+            </Text>
+            <View style={{ flex: 1 }}>
+              {(show || Platform.OS === "ios") && (
+                <DateTimePicker
+                  testID="dateTimePicker"
+                  value={date}
+                  mode="date"
+                  is24Hour={true}
+                  display="default"
+                  minimumDate={date}
+                  onChange={onChange}
+                />
+              )}
+            </View>
+            {Platform.OS !== "ios" && (
+              <View style={{ flex: 1 }}>
+                <Text>{date.toDateString()}</Text>
+              </View>
             )}
           </View>
+        </Card>
+      </Animatable.View>
+      <Animatable.View animation="bounceIn" duration={1000}>
+        <Card style={{ marginBottom: 10 }} onPress={showEndDateC}>
+          <View style={styles.etDate}>
+            <Text
+              style={{
+                flex: 1,
+                alignSelf: "center",
+                fontWeight: "600",
+                fontSize: 16,
+              }}
+            >
+              Subscription End
+            </Text>
+            <View style={{ flex: 1 }}>
+              {(showEndDate || Platform.OS === "ios") && (
+                <DateTimePicker
+                  testID="dateTimePicker"
+                  value={endDate}
+                  mode="date"
+                  is24Hour={true}
+                  display="default"
+                  minimumDate={date}
+                  onChange={onEndDateChange}
+                />
+              )}
+            </View>
+            {Platform.OS !== "ios" && (
+              <View style={{ flex: 1 }}>
+                <Text>{endDate.toDateString()}</Text>
+              </View>
+            )}
+          </View>
+        </Card>
+      </Animatable.View>
+      <Animatable.View animation="bounceIn" duration={1000}>
+        <Card style={{ padding: 20 }}>
+          <View style={{ flexDirection: "column" }}>
+            <Text style={{ paddingBottom: 10 }}>Add Accessories</Text>
+            <View style={styles.section}>
+              <Checkbox
+                style={styles.checkbox}
+                value={childSeatChecked}
+                color={childSeatChecked ? "#4ecdc4" : undefined}
+                onValueChange={setChildSeatChecked}
+              />
+              <Text
+                style={{
+                  flex: 6,
+                  alignSelf: "center",
+                  fontWeight: "600",
+                  fontSize: 16,
+                }}
+              >
+                Child Seat
+              </Text>
+              <View
+                style={{
+                  flex: 1,
+                  alignSelf: "center",
+                  fontWeight: "600",
+                  fontSize: 16,
+                  backgroundColor: "#E8E8E8",
+                  padding: 5,
+                  paddingLeft: 15,
+                  borderRadius: 5,
+                }}
+              >
+                <Text>30$</Text>
+              </View>
+            </View>
+            <View style={styles.section}>
+              <Checkbox
+                style={styles.checkbox}
+                value={bikeRackChecked}
+                color={bikeRackChecked ? "#4ecdc4" : undefined}
+                onValueChange={setBikeRackChecked}
+              />
+              <Text
+                style={{
+                  flex: 6,
+                  alignSelf: "center",
+                  fontWeight: "600",
+                  fontSize: 16,
+                }}
+              >
+                Bike Rack
+              </Text>
+              <View
+                style={{
+                  flex: 1,
+                  alignSelf: "center",
+                  fontWeight: "600",
+                  fontSize: 16,
+                  backgroundColor: "#E8E8E8",
+                  padding: 5,
+                  paddingLeft: 15,
+                  borderRadius: 5,
+                }}
+              >
+                <Text>20$</Text>
+              </View>
+            </View>
+          </View>
+        </Card>
+      </Animatable.View>
+      <Animatable.View animation="bounceIn" duration={1000}>
+        <Card
+          style={{
+            marginVertical: 10,
+            padding: 20,
+            borderRadius: 4,
+            backgroundColor: "#4ecdc4",
+          }}
+        >
           <View
             style={{
-              flexDirection: "column",
-              paddingHorizontal: 20,
+              flexDirection: "row",
+              alignContent: "center",
               justifyContent: "center",
             }}
           >
             <Text
               style={{
-                fontSize: 14,
-                width: "70%",
-                fontWeight: "500",
+                color: "#fff",
+                fontWeight: "700",
+                fontSize: 18,
+                alignSelf: "center",
               }}
-              numberOfLines={2}
             >
-              {model}
+              Total Subscription fee {totalPrice}
             </Text>
-            <View style={{ paddingVertical: 10 }}>
-              <Text style={{ color: "gray" }}>{price * 30} / Month </Text>
-            </View>
           </View>
-        </View>
-      </Card>
-      <Card style={{ marginVertical: 10 }} onPress={showStDate}>
-        <View style={styles.stDate}>
-          <Text
-            style={{
-              flex: 1,
-              alignSelf: "center",
-              fontWeight: "600",
-              fontSize: 16,
-            }}
-          >
-            Subscription Start
-          </Text>
-          <View style={{ flex: 1 }}>
-            {(show || Platform.OS === "ios") && (
-              <DateTimePicker
-                testID="dateTimePicker"
-                value={date}
-                mode="date"
-                is24Hour={true}
-                display="default"
-                minimumDate={date}
-                onChange={onChange}
-              />
-            )}
-          </View>
-          {Platform.OS !== "ios" && (
-            <View style={{ flex: 1 }}>
-              <Text>{date.toDateString()}</Text>
-            </View>
-          )}
-        </View>
-      </Card>
-      <Card style={{ marginBottom: 10 }} onPress={showEndDateC}>
-        <View style={styles.etDate}>
-          <Text
-            style={{
-              flex: 1,
-              alignSelf: "center",
-              fontWeight: "600",
-              fontSize: 16,
-            }}
-          >
-            Subscription End
-          </Text>
-          <View style={{ flex: 1 }}>
-            {(showEndDate || Platform.OS === "ios") && (
-              <DateTimePicker
-                testID="dateTimePicker"
-                value={endDate}
-                mode="date"
-                is24Hour={true}
-                display="default"
-                minimumDate={date}
-                onChange={onEndDateChange}
-              />
-            )}
-          </View>
-          {Platform.OS !== "ios" && (
-            <View style={{ flex: 1 }}>
-              <Text>{endDate.toDateString()}</Text>
-            </View>
-          )}
-        </View>
-      </Card>
-      <Card style={{ padding: 20 }}>
-        <View style={{ flexDirection: "column" }}>
-          <Text style={{ paddingBottom: 10 }}>Add Accessories</Text>
-          <View style={styles.section}>
-            <Checkbox
-              style={styles.checkbox}
-              value={childSeatChecked}
-              color={childSeatChecked ? "#4ecdc4" : undefined}
-              onValueChange={setChildSeatChecked}
-            />
-            <Text
-              style={{
-                flex: 6,
-                alignSelf: "center",
-                fontWeight: "600",
-                fontSize: 16,
-              }}
-            >
-              Child Seat
-            </Text>
-            <View
-              style={{
-                flex: 1,
-                alignSelf: "center",
-                fontWeight: "600",
-                fontSize: 16,
-                backgroundColor: "#E8E8E8",
-                padding: 5,
-                paddingLeft: 15,
-                borderRadius: 5,
-              }}
-            >
-              <Text>30$</Text>
-            </View>
-          </View>
-          <View style={styles.section}>
-            <Checkbox
-              style={styles.checkbox}
-              value={bikeRackChecked}
-              color={bikeRackChecked ? "#4ecdc4" : undefined}
-              onValueChange={setBikeRackChecked}
-            />
-            <Text
-              style={{
-                flex: 6,
-                alignSelf: "center",
-                fontWeight: "600",
-                fontSize: 16,
-              }}
-            >
-              Bike Rack
-            </Text>
-            <View
-              style={{
-                flex: 1,
-                alignSelf: "center",
-                fontWeight: "600",
-                fontSize: 16,
-                backgroundColor: "#E8E8E8",
-                padding: 5,
-                paddingLeft: 15,
-                borderRadius: 5,
-              }}
-            >
-              <Text>20$</Text>
-            </View>
-          </View>
-        </View>
-      </Card>
-      <Card
-        style={{
-          marginVertical: 10,
-          padding: 20,
-          borderRadius: 4,
-          backgroundColor: "#4ecdc4",
-        }}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            alignContent: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: "#fff",
-              fontWeight: "700",
-              fontSize: 18,
-              alignSelf: "center",
-            }}
-          >
-            Total Subscription fee {totalPrice}
-          </Text>
-        </View>
-      </Card>
-
-      <Card
-        onPress={() => {
-          Alert.alert(
-            "Subscription",
-            "Are you sure you want to order subscription for this car",
-            [
-              {
-                text: "No",
-                onPress: () => console.log("Cancel Pressed"),
-                style: "cancel",
-              },
-              {
-                text: "Yes",
-                onPress: () => {
-                  placeOrder();
+        </Card>
+      </Animatable.View>
+      <Animatable.View animation="bounceIn" duration={1000}>
+        <Card
+          onPress={() => {
+            Alert.alert(
+              "Subscription",
+              "Are you sure you want to order subscription for this car",
+              [
+                {
+                  text: "No",
+                  onPress: () => console.log("Cancel Pressed"),
+                  style: "cancel",
                 },
-              },
-            ],
-            { cancelable: true }
-          );
-        }}
-        style={{
-          marginVertical: 10,
-          padding: 20,
-          borderRadius: 4,
-          backgroundColor: "#4fd966",
-        }}
-      >
-        <View
+                {
+                  text: "Yes",
+                  onPress: () => {
+                    placeOrder();
+                  },
+                },
+              ],
+              { cancelable: true }
+            );
+          }}
           style={{
-            flexDirection: "row",
-            alignContent: "center",
-            justifyContent: "center",
+            marginVertical: 10,
+            padding: 20,
+            borderRadius: 4,
+            backgroundColor: "#4fd966",
           }}
         >
-          <Text
+          <View
             style={{
-              color: "#fff",
-              fontWeight: "700",
-              fontSize: 18,
-              alignSelf: "center",
+              flexDirection: "row",
+              alignContent: "center",
+              justifyContent: "center",
             }}
           >
-            Subscribe
-          </Text>
-        </View>
-      </Card>
+            <Text
+              style={{
+                color: "#fff",
+                fontWeight: "700",
+                fontSize: 18,
+                alignSelf: "center",
+              }}
+            >
+              Subscribe
+            </Text>
+          </View>
+        </Card>
+      </Animatable.View>
     </View>
   );
 }

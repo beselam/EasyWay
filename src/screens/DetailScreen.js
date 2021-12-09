@@ -11,6 +11,7 @@ import {
 import { collection, addDoc, getDocs, where } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { Card } from "react-native-paper";
+import * as Animatable from "react-native-animatable";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -45,62 +46,115 @@ function DetailScreen({ route, navigation }) {
       <View style={styles.items}>
         {car != null && car != undefined ? (
           <View>
-            <Image style={styles.imageStyle} source={{ uri: car.image }} />
-
-            <View style={styles.info}>
-              <Text>Brand: </Text>
-              <Text>{car.brand}</Text>
-            </View>
-            <View style={styles.info}>
-              <Text>Price: </Text>
-              <Text>{car.price * 30} / Month</Text>
-            </View>
-            <View style={styles.info}>
-              <Text>Location: </Text>
-              <Text>{car.location}</Text>
-            </View>
+            <Animatable.View animation="bounceInLeft" duration={2000}>
+              <Image style={styles.imageStyle} source={{ uri: car.image }} />
+            </Animatable.View>
+            <Animatable.View animation="slideInRight" duration={1000}>
+              <Card style={styles.detailCard}>
+                <View style={styles.info}>
+                  <Text>Brand: </Text>
+                  <Text>{car.brand}</Text>
+                </View>
+              </Card>
+            </Animatable.View>
+            <Animatable.View animation="slideInLeft" duration={1000}>
+              <Card style={styles.detailCard}>
+                <View style={styles.info}>
+                  <Text>Price: </Text>
+                  <Text>{car.price * 30} / Month</Text>
+                </View>
+              </Card>
+            </Animatable.View>
+            <Animatable.View animation="slideInRight" duration={1000}>
+              <Card style={styles.detailCard}>
+                <View style={styles.info}>
+                  <Text>Location: </Text>
+                  <Text>{car.location}</Text>
+                </View>
+              </Card>
+            </Animatable.View>
             {shouldShow ? (
               <>
-                <View style={styles.info}>
-                  <Text>Model: </Text>
-                  <Text>{car.model}</Text>
-                </View>
-                <View style={styles.info}>
-                  <Text>Year: </Text>
-                  <Text>{car.modelYear}</Text>
-                </View>
-                <View style={styles.info}>
-                  <Text>Type:</Text>
-                  <Text>{car.type}</Text>
-                </View>
-                <View style={styles.info}>
-                  <Text>Transmisison: </Text>
-                  <Text>{car.transmission}</Text>
-                </View>
-                <View style={styles.info}>
-                  <Text>Max speed: </Text>
-                  <Text>{car.maxSpeed}</Text>
-                </View>
-                <View style={styles.info}>
-                  <Text>Horsepower: </Text>
-                  <Text>{car.housePower}</Text>
-                </View>
-                <View style={styles.info}>
-                  <Text>Fuel: </Text>
-                  <Text>{car.fuel}</Text>
-                </View>
-                <View style={styles.info}>
-                  <Text>Consumption: </Text>
-                  <Text>{car.fuelConsumption}</Text>
-                </View>
-                <View style={styles.info}>
-                  <Text>CO2 emissions: </Text>
-                  <Text>{car.CO2}</Text>
-                </View>
-                <View style={styles.info}>
-                  <Text>Color: </Text>
-                  <Text>{car.color}</Text>
-                </View>
+                <Animatable.View animation="bounceInDown" duration={1000}>
+                  <Card style={styles.detailCard}>
+                    <View style={styles.info}>
+                      <Text>Model: </Text>
+                      <Text>{car.model}</Text>
+                    </View>
+                  </Card>
+                </Animatable.View>
+                <Animatable.View animation="bounceInDown" duration={1300}>
+                  <Card style={styles.detailCard}>
+                    <View style={styles.info}>
+                      <Text>Year: </Text>
+                      <Text>{car.modelYear}</Text>
+                    </View>
+                  </Card>
+                </Animatable.View>
+                <Animatable.View animation="bounceInDown" duration={1600}>
+                  <Card style={styles.detailCard}>
+                    <View style={styles.info}>
+                      <Text>Type:</Text>
+                      <Text>{car.type}</Text>
+                    </View>
+                  </Card>
+                </Animatable.View>
+                <Animatable.View animation="bounceInDown" duration={1800}>
+                  <Card style={styles.detailCard}>
+                    <View style={styles.info}>
+                      <Text>Transmisison: </Text>
+                      <Text>{car.transmission}</Text>
+                    </View>
+                  </Card>
+                </Animatable.View>
+                <Animatable.View animation="bounceInDown" duration={2100}>
+                  <Card style={styles.detailCard}>
+                    <View style={styles.info}>
+                      <Text>Max speed: </Text>
+                      <Text>{car.maxSpeed}</Text>
+                    </View>
+                  </Card>
+                </Animatable.View>
+                <Animatable.View animation="bounceInDown" duration={2100}>
+                  <Card style={styles.detailCard}>
+                    <View style={styles.info}>
+                      <Text>Horsepower: </Text>
+                      <Text>{car.housePower}</Text>
+                    </View>
+                  </Card>
+                </Animatable.View>
+                <Animatable.View animation="bounceInDown" duration={2100}>
+                  <Card style={styles.detailCard}>
+                    <View style={styles.info}>
+                      <Text>Fuel: </Text>
+                      <Text>{car.fuel}</Text>
+                    </View>
+                  </Card>
+                </Animatable.View>
+                <Animatable.View animation="bounceInDown" duration={2100}>
+                  <Card style={styles.detailCard}>
+                    <View style={styles.info}>
+                      <Text>Consumption: </Text>
+                      <Text>{car.fuelConsumption}</Text>
+                    </View>
+                  </Card>
+                </Animatable.View>
+                <Animatable.View animation="bounceInDown" duration={2100}>
+                  <Card style={styles.detailCard}>
+                    <View style={styles.info}>
+                      <Text>CO2 emissions: </Text>
+                      <Text>{car.CO2}</Text>
+                    </View>
+                  </Card>
+                </Animatable.View>
+                <Animatable.View animation="bounceInDown" duration={2100}>
+                  <Card style={styles.detailCard}>
+                    <View style={styles.info}>
+                      <Text>Color: </Text>
+                      <Text>{car.color}</Text>
+                    </View>
+                  </Card>
+                </Animatable.View>
               </>
             ) : null}
             <Button
@@ -154,7 +208,14 @@ function DetailScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  detailCard: {
+    height: 50,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+    marginVertical: 5,
+  },
   card: {
     height: windowHeight * 0.4,
     width: windowWidth * 0.9,
@@ -168,13 +229,10 @@ const styles = StyleSheet.create({
   info: {
     flexDirection: "row",
     justifyContent: "space-between",
-    borderBottomColor: "grey",
-    borderBottomWidth: 1,
     width: windowWidth * 0.9,
     alignSelf: "center",
-    marginBottom: 10,
-    marginTop: 10,
-    flexWrap: "wrap",
+    height: 50,
+    paddingTop: 15,
   },
   imageStyle: {
     width: windowWidth * 0.95,

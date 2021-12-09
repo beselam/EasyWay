@@ -18,9 +18,15 @@ import { Ionicons } from "@expo/vector-icons";
 
 export default function HomeScreen({ navigation }) {
   const [cars, setCars] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
   const auth = getAuth();
   const user = auth.currentUser;
   console.log(user);
+
+  const onRefresh = () => {
+    setIsFetching(true);
+    handler();
+  };
 
   const handleClick = async () => {
     const car = {
@@ -61,7 +67,13 @@ export default function HomeScreen({ navigation }) {
       });
   };
 
-  const handleSearch = () => {};
+  const handleSearch = (text) => {
+    const userInput = text.toLowerCase();
+    const newList = cars.filter((car) =>
+      car.model.toLowerCase().includes(userInput)
+    );
+    setCars(newList);
+  };
 
   const handler = async () => {
     let newList = [];
@@ -73,6 +85,7 @@ export default function HomeScreen({ navigation }) {
     await setCars(newList);
     console.log(` ${cars.length}`);
     console.log(` ${cars.length}`);
+    setIsFetching(false);
   };
 
   useEffect(() => {
@@ -103,8 +116,10 @@ export default function HomeScreen({ navigation }) {
 
       {cars?.length > 0 ? (
         <FlatList
-        style={{marginBottom: 80}}
+          style={{ marginBottom: 80 }}
           data={cars}
+          onRefresh={onRefresh}
+          refreshing={isFetching}
           showsVerticalScrollIndicator={false}
           keyExtractor={(list) => list.image + list.color + Math.random()}
           renderItem={({ item }) => (
@@ -128,7 +143,7 @@ export default function HomeScreen({ navigation }) {
             justifyContent: "center",
             alignItems: "center",
           }}
-          onPress={console.log("")}
+          onPress={handler}
         >
           <MaterialCommunityIcons name="refresh" size={40} color="white" />
           <Text>Please press to refresh your page</Text>
@@ -142,7 +157,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: "95%",
     alignSelf: "center",
-    marginTop: 10
+    marginTop: 10,
   },
   textInputCard: {
     elevation: 2,
